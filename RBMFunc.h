@@ -4,15 +4,13 @@
 
 class RBM{
  private:
-  int layerNum;
-  vector<int> nodeNum;
   double Efunc;
-  vector< vector<double> > w,h;
+  vector< vector<double> > w;
+  vector<double> b,c,v,h;
 
   public:
-  void setLayer(int layerNumtmp, int *nodeNumtmp);
   void Efunc();
-  void preLearning(int layer);
+  void Learning(int layer);
   void CDmethod();
 
 }:
