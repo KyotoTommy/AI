@@ -1,6 +1,6 @@
-#include "AIFunc.h"
+#include "RBMFunc.h"
 
-void AI::setLayer(int layerNumtmp, int *nodeNumtmp){
+void RBM::setLayer(int layerNumtmp, int *nodeNumtmp){
   layerNum = layerNumtmp;
   
   for(int i=0; i<nodeNumtmp.size(); i++)
@@ -10,7 +10,7 @@ void AI::setLayer(int layerNumtmp, int *nodeNumtmp){
 
 }
 
-void AI::Efunc(){
+void RBM::Efunc(){
 
   for(int r=0; r<layerNum; r++){
     for(int i=0; i<nodeNum[i]; i++){
@@ -22,7 +22,12 @@ void AI::Efunc(){
 
 }
 
-void AI::preLearning(int layer){
+void RBM::preLearning(int layer){
+
+
+}
+
+void RBM::CDmethod(){
 
 
 }

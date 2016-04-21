@@ -1,8 +1,8 @@
-//AIFunc.h
-#ifndef _AIFUNC_H_
-#define _AIFUNC_H_
+//RBMFunc.h
+#ifndef _RBMFUNC_H_
+#define _RBMFUNC_H_
 
-class AI{
+class RBM{
  private:
   int layerNum;
   vector<int> nodeNum;
@@ -13,7 +13,7 @@ class AI{
   void setLayer(int layerNumtmp, int *nodeNumtmp);
   void Efunc();
   void preLearning(int layer);
- 
+  void CDmethod();
 
 }:
  
@@ -22,4 +22,4 @@ class AI{
 
 
 
-#endif// _AIFUNC_H_
+#endif// _RBMFUNC_H_

@@ -1,11 +1,11 @@
-#include "AIFunc.h"
+#include "RBMFunc.h"
 
 int main(int argc, char *argv[])
 {
   
-  AI Ai;
+  RBM RBM;
 
-  Ai.setLayer();
+  RBM.setLayer();
 
 
 
