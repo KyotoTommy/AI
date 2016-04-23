@@ -10,14 +10,9 @@ class RBM{
 
   public:
   void Efunc();
-  void Learning(int layer);
+  void updatePara();
   void CDmethod();
 
-}:
- 
-
-
-
-
+};
 
 #endif// _RBMFUNC_H_

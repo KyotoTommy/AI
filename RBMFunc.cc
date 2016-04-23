@@ -11,7 +11,7 @@ void RBM::Efunc(){
 
 }
 
-void RBM::Learning(){
+void RBM::updatePara(){
 
 
 }
