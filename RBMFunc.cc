@@ -1,14 +1,8 @@
 #include "RBMFunc.h"
 
-void RBM::Efunc(){
-
-    for(int i=0; i<nodeNum[i]; i++){
-      for(int j=0; j<nodeNum[j]; j++){
-
-	Efunc += -b[i]*v[i] - c[j]*h[j] -w[i][j]*v[i]*c[j];
-
-      }}}
-
+double RBM::randMake(){
+ srand((unsigned)time(NULL));
+ return (double)rand()/RAND_MAX;
 }
 
 void RBM::updatePara(){
@@ -30,16 +24,24 @@ for(j=0; j<hiddenNum; j++)
 
 }
 
-void RBM::CDmethod(){
+vector<int> RBM::output(vector<double> &prob){
+int i;
+vector<int> out;
 
-
+for(i=0; i<prob.size(); i++){
+	if( randMake() <=prob[i] )
+		out.push_back(1);
+	else
+		out.push_back(0);
+ 
+	}
+	return out
 }
-
-double prob_h_v(int j, double *v){
+double RBM::prob_h_v(int j, vector<double> &v){
 double lambda;
 int i;
 
-lambda= c[j];
+lambda = c[j];
 
 for(i=0; i<visibleNum; i++)
 	lambda += v[i]*w[i][j];	
@@ -47,3 +49,14 @@ for(i=0; i<visibleNum; i++)
 return 1 / ( 1 + exp( -lambda ) );
 }
 
+double RBM::prob_v_h(int i, vector<double> &h){
+ double lambda;
+ int j;
+
+ lambda = b[i]; 
+ 
+ for(j=0; j<hiddenNum; j++)
+ 	lambda += h[j]*w[i][j];
+ 
+return 1 / ( 1 + exp( -lambda ) );
+}
