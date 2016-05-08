@@ -37,26 +37,36 @@ for(i=0; i<prob.size(); i++){
 	}
 	return out
 }
-double RBM::prob_h_v(int j, vector<double> &v){
+vector<double> RBM::prob_h_v(vector<double> &v_){
 double lambda;
-int i;
+int i,j;
+vector<double> prob
 
+for(j=0; j<hiddenNum; j++){
 lambda = c[j];
-
 for(i=0; i<visibleNum; i++)
-	lambda += v[i]*w[i][j];	
-
-return 1 / ( 1 + exp( -lambda ) );
+	lambda += v_[i]*w[i][j];	
+ prob.push_back( 1 / ( 1 + exp( -lambda ) ) );
+}
+return prob;
 }
 
-double RBM::prob_v_h(int i, vector<double> &h){
+vector<double> RBM::prob_v_h(vector<double> &h_){
  double lambda;
- int j;
+ int i,j;
+vector<double> prob
 
+for(i=0; i<visibleNum; i++){
  lambda = b[i]; 
- 
  for(j=0; j<hiddenNum; j++)
- 	lambda += h[j]*w[i][j];
- 
-return 1 / ( 1 + exp( -lambda ) );
+ 	lambda += h_[j]*w[i][j];
+prob.push_back( 1 / ( 1 + exp( -lambda ) ) )
+}
+
+return prob;
+}
+
+vector<double> RBM::Rebuild(vector<int> &v){
+ h = output( prob_h_v(&v) );
+ return output( prob_v_h(&h) );
 }
