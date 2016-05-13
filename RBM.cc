@@ -9,10 +9,15 @@ int main(int argc, char *argv[])
     
   RBM RBM(20,10);
   
-  updatePara(V0,0.01);
-  updatePara(V1,0.01);
-  updatePara(V2,0.01);
-  updatePara(V3,0.01);
+  RBM.updatePara(V0,0.01);
+  RBM.updatePara(V1,0.01);
+  RBM.updatePara(V2,0.01);
+  RBM.updatePara(V3,0.01);
   
+  RBM.Rebuild(v0);
+  RBM.Rebuild(v1);
+  RBM.Rebuild(v2);
+  RBM.Rebuild(v3);
+
   return 0;
 }
