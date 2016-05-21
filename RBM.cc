@@ -16,14 +16,15 @@ int main(int argc, char *argv[])
   RBM.updatePara(v3,0.01);
   }
 
-for(int k=0; k<1000; k++){
+for(int k=0; k<10000; k++){
   RBM.updatePara(v0,0.001);
   RBM.updatePara(v1,0.001);
   RBM.updatePara(v2,0.001);
   RBM.updatePara(v3,0.001);
   }
- 
 
+
+ for(int k=0; k<5; k++){
   vector<int> Re0,Re1,Re2,Re3;
   Re0 = RBM.Rebuild(v0);
   Re1 = RBM.Rebuild(v1);
@@ -46,5 +47,6 @@ for(int k=0; k<1000; k++){
     cout<<Re3[k];
   cout<<endl;
 
+ }
   return 0;
 }
