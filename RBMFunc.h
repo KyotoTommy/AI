@@ -8,6 +8,7 @@
 #include <vector>
 #include <cstdlib>
 #include <math.h>
+#include <random>
 
 using namespace std;
 
@@ -18,7 +19,7 @@ class RBM{
   int visibleNum, hiddenNum;
   
  public:
-  void updatePara(vector<int> &Vin, double alpha);
+  void updatePara(vector<int> &visible, double alpha);
   void CDmethod();
   RBM(int i, int j){
     visibleNum = i;
@@ -26,8 +27,26 @@ class RBM{
     b.resize(i);
     c.resize(j);
     w.resize(i);
+
     for(int k=0; k<i; k++)
-      w[i].resize(j);
+      w[k].resize(j);
+    
+    for(int k=0; k<i; k++)
+      b[k] = 0;//b.push_back(0);
+   
+    for(int k=0; k<j; k++)
+      c[k] = 0;//c.push_back(0);
+   
+    random_device seed_gen;
+    default_random_engine engine(seed_gen());
+
+    normal_distribution<> dist(0,0.01);
+
+    for(int k=0; k<i; k++){
+      for(int q=0; q<j; q++)
+	w[k][q] = dist(engine);
+    }
+
   }
   double randMake();
   vector<int> output(vector<double> prob);

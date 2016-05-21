@@ -5,14 +5,11 @@ double RBM::randMake(){
  return (double)rand()/RAND_MAX;
 }
 
-void RBM::updatePara(vector<int> &Vin, double alpha){
+void RBM::updatePara(vector<int> &visible, double alpha){
   int i,j,k;
-  vector<int> h_,visible,visible_1;
+  vector<int> h_,visible_1;
 
-  for(k=0; k<Vin.size(); k++)
-    visible.push_back( Vin[k] );
-  
-  h_ = output( prob_h_v(Vin) );
+  h_ = output( prob_h_v(visible) );
   
   visible_1 = output( prob_v_h(h_) );
 
@@ -37,6 +34,7 @@ void RBM::updatePara(vector<int> &Vin, double alpha){
     Probtmp2 = prob_h_v(visible_1);
     c[j] += alpha * ( Probtmp[j] - Probtmp2[j] );
   }
+
 }
 
 vector<int> RBM::output(vector<double> prob){
