@@ -13,7 +13,7 @@
 using namespace std;
 
 class RBM{
- private:
+ protected:
   vector< vector<double> > w;
   vector<double> b,c;
   int visibleNum, hiddenNum;
