@@ -25,7 +25,8 @@ void main(int argc, char *argv[]){
       Re = ReRBM.Rebuild();
       
       for(i=0; i<Re.size(); i++)
-	cout<<Re[i]<<endl;    }
+	cout<<Re[i]<<endl;    
+    }
   }
 
   return 0;
