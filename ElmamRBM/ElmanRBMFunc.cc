@@ -16,17 +16,23 @@ vector<int> ElmanRBM::visiblePlus(vector<int> &v_){
   int i;
   vector<int> Vin;
 
-  Vin.resize(v.size());
-  Vin = v;
+  Vin.resize(v_.size());
+  Vin = v_;
 
-  for(i=0; i<H1.size(); i++)
-    Vin.push_back( H1[i] );
+  if(!H1.size()){
+    for(i=0; i<H1.size(); i++)
+      Vin.push_back( H1[i] );
+  }
 
-  for(i=0; i<H2.size(); i++)
-    Vin.push_back( H2[i] );
+  if(!H2.size()){
+    for(i=0; i<H2.size(); i++)
+      Vin.push_back( H2[i] );
+  }
 
-  for(i=0; i<H3.size(); i++)
-    Vin.push_back( H3[i] );
+  if(!H3.size()){
+    for(i=0; i<H3.size(); i++)
+      Vin.push_back( H3[i] );
+  }
 
   return Vin;
 }

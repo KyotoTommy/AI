@@ -19,7 +19,8 @@ class ElmanRBM : public RBM{
 
  public:
   void ReadIni();
-  void pastHidden();
+  void PastHidden(vector<int> &v_);
+  vector<int> visiblePlus(vector<int> &V_);
 
 };
 
