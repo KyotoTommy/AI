@@ -1,7 +1,9 @@
 #include "RBMFunc.h"
 #include "ElmanRBMFunc.h"
 
-void ElmanRBM::ReadIni(){
+void ElmanRBM::ini(){
+
+  ifstream ifs("ini.dat");
 
 }
 

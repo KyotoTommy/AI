@@ -1,6 +1,6 @@
 #include "ElmanRBMFunc.h"
 
-void main(int argc, char *argv[]){
+int main(int argc, char *argv[]){
 
   int LorO, k, i;
   vector<string> Vin;
@@ -9,8 +9,6 @@ void main(int argc, char *argv[]){
   cin>>LorO;
 
   ElmanRBM ElmanRBM;
-
-  ElmanRBM.RBM(20,10);
   ElmanRBM.ini();
 
   if(!LorO){//Learning mode
@@ -21,13 +19,17 @@ void main(int argc, char *argv[]){
       Vin.push_back(str);
 
     for(k=0; k<Vin.size(); k++){
-      ElmanRBM.updatePara(visiblePlus(Vin[k]),0.01);
+      vector<int> Vtmp;
+      Vtmp = ElmanRBM.visiblePlus(Vin);
+      ElmanRBM.updatePara(Vtmp,0.01);
       ElmanRBM.PastHidden(Vin)
     }
 
     for(k=0; k<Vin.size();k++){
-      ElmanRBM.updatePara(visiblePlus(Vin[k]),0.001);
-      ElmanRBM.PastHidden(Vin[k])
+      vector<int> Vtmp;
+      Vtmp = ElmanRBM.visiblePlus(Vin);
+      ElmanRBM.updatePara(Vtmp,0.001);
+      ElmanRBM.PastHidden(Vin)
       }
 
   }
