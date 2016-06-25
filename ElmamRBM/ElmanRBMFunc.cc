@@ -38,3 +38,37 @@ vector<int> ElmanRBM::visiblePlus(vector<int> &v_){
 
   return Vin;
 }
+
+void ElmanRBM::Learn( vector< vector <string> > &v_, double learningRate){
+
+ 
+  for(int k=0; k<docN; k++){
+    vector<int> Vtmp,Vin;
+    
+    for(int i =0; i<v_[k].size(); i++)
+      Vin.push_back( atoi( v_[k][i].c_str() ) );
+
+    Vtmp = visiblePlus(Vin);
+    updatePara(Vtmp,learningRate);
+    PastHidden(Vin);
+
+    }
+
+}
+
+void ElmanRBM::output( vector< vector <string> > &v_){
+   
+  for(int k=0; k<docN; k++){
+    vector<int> Vtmp;
+       
+    for(int i =0; i<v_[k].size(); i++)
+      Vtmp.push_back( atoi( v_[k][i].c_str() ) );
+
+    vector<int> Re;
+    Re = Rebuild(Vtmp);
+      
+    for(int i=0; i<Re.size(); i++)
+      cout<<Re[i]<<endl;    
+  }
+
+}

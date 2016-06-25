@@ -3,51 +3,54 @@
 int main(int argc, char *argv[]){
 
   int LorO, k, i;
-  vector<string> Vin;
+  int l = 0; 
+  vector< vector<string> > Vin;
 
   cout<<"learning?(=0) or output?(=1)"<<endl;
   cin>>LorO;
 
-  ElmanRBM ElmanRBM;
+  ElmanRBM ElmanRBM(20,10);
   ElmanRBM.ini();
 
   if(!LorO){//Learning mode
     ifstream ifs(argv[1]);
 
-    string str;
-    while(getline(ifs,str))
-      Vin.push_back(str);
+    Vin.resize(20);
 
-    for(k=0; k<Vin.size(); k++){
-      vector<int> Vtmp;
-      Vtmp = ElmanRBM.visiblePlus(Vin);
-      ElmanRBM.updatePara(Vtmp,0.01);
-      ElmanRBM.PastHidden(Vin)
+    //input date
+    string str;
+    while(getline(ifs,str)){
+      string tmp;
+      istringstream stream(str);
+      while(getline(stream,tmp,',')){
+	Vin[l].push_back(tmp); 
+	ElmanRBM.docN++;
+      }
+      l++;
     }
 
-    for(k=0; k<Vin.size();k++){
-      vector<int> Vtmp;
-      Vtmp = ElmanRBM.visiblePlus(Vin);
-      ElmanRBM.updatePara(Vtmp,0.001);
-      ElmanRBM.PastHidden(Vin)
-      }
+      //learing 
+    ElmanRBM.Learn(Vin, 0.01);
+      ElmanRBM.Learn(Vin, 0.001);
 
   }
   else{//output mode
-    for(k=0; k<Vin.size(); k++){
-
-      ifstream ifs(argv[1]);
 
       string str;
-      while(getline(ifs,str))
-	Vin.push_back(str);
-      
-      vector<int> Re;
-      Re = ElmanRBM.Rebuild(Vin);
-      
-      for(i=0; i<Re.size(); i++)
-	cout<<Re[i]<<endl;    
-    }
+      ifstream ifs(argv[1]);
+
+     while(getline(ifs,str)){
+      string tmp;
+      istringstream stream(str);
+      while(getline(stream,tmp,',')){
+	Vin[l].push_back(tmp); 
+	ElmanRBM.docN++;
+      }
+      l++;
+     }
+   
+     ElmanRBM.output(Vin);
+
   }
 
   return 0;
