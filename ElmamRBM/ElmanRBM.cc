@@ -6,52 +6,59 @@ int main(int argc, char *argv[]){
   int l = 0; 
   vector< vector<string> > Vin;
 
-  cout<<"learning?(=0) or output?(=1)"<<endl;
-  cin>>LorO;
+  while(1){
+    
+    cout<<"learning?(=2) or output?(=1) or exit(=0)"<<endl;
+    cin>>LorO;
 
-  ElmanRBM ElmanRBM(20,10);
-  ElmanRBM.ini();
+    ElmanRBM ElmanRBM(20,10);
+    ElmanRBM.ini();
 
-  if(!LorO){//Learning mode
-    ifstream ifs(argv[1]);
+    if(LorO==2){//Learning mode
+      ifstream ifs(argv[1]);
 
-    Vin.resize(20);
+      Vin.resize(20);
 
-    //input date
-    string str;
-    while(getline(ifs,str)){
-      string tmp;
-      istringstream stream(str);
-      while(getline(stream,tmp,',')){
-	Vin[l].push_back(tmp); 
-	ElmanRBM.docN++;
+      //input date
+      string str;
+      while(getline(ifs,str)){
+	string tmp;
+	istringstream stream(str);
+	while(getline(stream,tmp,',')){
+	  Vin[l].push_back(tmp); 
+	  ElmanRBM.docN++;
+	}
+	l++;
       }
-      l++;
-    }
 
       //learing 
-    ElmanRBM.Learn(Vin, 0.01);
+      ElmanRBM.Learn(Vin, 0.01);
       ElmanRBM.Learn(Vin, 0.001);
 
-  }
-  else{//output mode
+    }else if(LorO==1){//output mode
 
       string str;
       ifstream ifs(argv[1]);
 
-     while(getline(ifs,str)){
-      string tmp;
-      istringstream stream(str);
-      while(getline(stream,tmp,',')){
-	Vin[l].push_back(tmp); 
-	ElmanRBM.docN++;
+      while(getline(ifs,str)){
+	string tmp;
+	istringstream stream(str);
+	while(getline(stream,tmp,',')){
+	  Vin[l].push_back(tmp); 
+	  ElmanRBM.docN++;
+	}
+	l++;
       }
-      l++;
-     }
    
-     ElmanRBM.output(Vin);
+      ElmanRBM.output(Vin);
 
+    }else{
+      break;//finish 
+    }
+    
   }
+
+  cout<<"bye!";
 
   return 0;
 }
